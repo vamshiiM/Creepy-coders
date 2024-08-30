@@ -15,7 +15,7 @@ def authenticate():
     return creds
 
 
-def upload_photo(file_path):
+def upload_file(file_path):
     # Authenticate and build the service
     creds = authenticate()
     service = build('drive', 'v3', credentials=creds)
@@ -26,8 +26,8 @@ def upload_photo(file_path):
         'parents': [PARENT_FOLDER_ID],
     }
 
-    # Create MediaFileUpload object
-    media = MediaFileUpload(file_path, resumable=True)
+    # Create MediaFileUpload object for PDF file
+    media = MediaFileUpload(file_path, mimetype='application/pdf', resumable=True)
 
     try:
         # Upload the file
@@ -43,5 +43,5 @@ def upload_photo(file_path):
         print(f'An error occurred: {e}')
 
 
-# Path to the file you want to upload
-upload_photo("Screenshot_2024-07-26-18-57-45-51_1c337646f29875672b5a61192b9010f9[1].jpg")
+# Path to the PDF file you want to upload
+upload_file("Assignment_No_3_112.pdf")
